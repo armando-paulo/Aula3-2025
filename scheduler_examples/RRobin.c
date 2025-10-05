@@ -25,6 +25,13 @@ void rr_scheduler(uint32_t current_time_ms, queue_t *rq, pcb_t **cpu_task) {
             (*cpu_task) = NULL;
         }
     }
-
+else if (slice_elapsed >= TIME_SLICE_MS) {
+     enqueue(rq, *cpu_task);
+     *cpu_task = NULL;
 }
+if (*cpu_task == NULL && rq->head != NULL) {
+    *cpu_task = dequeue_pcb(rq);
+    (*cpu_task)->slice_start_ms = current_time_ms;
+}
+
 }
