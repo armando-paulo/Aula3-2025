@@ -16,6 +16,7 @@
 
 #include "msg.h"
 #include "queue.h"
+#include "rrobin.h"
 #include "sjf.h"
 
 static uint32_t PID = 0;
@@ -234,10 +235,9 @@ void check_blocked_queue(queue_t * blocked_queue, queue_t * command_queue, uint3
 
 static const char *SCHEDULER_NAMES[] = {
     "FIFO",
-/*
-    "SJF",
+     "SJF",
     "RR",
-    "MLFQ",
+ /*   "MLFQ",
 */
     NULL
 };
@@ -315,7 +315,7 @@ int main(int argc, char *argv[]) {
                 sjf_scheduler(current_time_ms, &ready_queue, &CPU);
                 break;
                 case SCHED_RR:
-                rr_scheduler
+                rr_scheduler(current_time_ms, &ready_queue, &CPU);
                 break;
             default:
                 printf("Unknown scheduler type\n");
