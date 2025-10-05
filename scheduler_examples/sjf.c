@@ -1,4 +1,4 @@
-#include "fifo.h"
+#include "sjf.h"
 
 #include <stdio.h>
 #include <stdlib.h>

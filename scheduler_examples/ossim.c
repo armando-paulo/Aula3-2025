@@ -16,6 +16,7 @@
 
 #include "msg.h"
 #include "queue.h"
+#include "sjf.h"
 
 static uint32_t PID = 0;
 
@@ -311,7 +312,10 @@ int main(int argc, char *argv[]) {
                 fifo_scheduler(current_time_ms, &ready_queue, &CPU);
                 break;
              case SCHED_SJF:
-
+                sjf_scheduler(current_time_ms, &ready_queue, &CPU);
+                break;
+                case SCHED_RR:
+                rr_scheduler
                 break;
             default:
                 printf("Unknown scheduler type\n");
